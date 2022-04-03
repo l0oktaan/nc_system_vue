@@ -1,32 +1,63 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
-  </div>
+  <v-app>
+    <top-nav></top-nav>
+    <div class="content">
+      <div class="menu">
+        <main-menu></main-menu>
+      </div>
+      <div class="detail">
+        <router-view/>        
+      </div>
+    </div>
+  </v-app>
 </template>
-
-<style lang="scss">
+<script>
+import TopNav from "./components/TopNav.vue"
+import MainMenu from "./components/MainMenu.vue"
+export default {
+  components: {
+    TopNav,
+    MainMenu
+  }
+  
+}
+</script>
+<style scoped>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Sarabun, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #e0e0e0;
+  display: flex;
+  justify-content: center;
+  align-items: top;
+  flex-direction: column;
+
 }
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.content{
+  display: flex;
+  justify-content:flex-start;
+  align-items: top;
+  flex-direction: row;
+  width: 100%;
 }
+.content .menu{  
+  margin-left: 20px;
+}
+.content .detail{  
+  margin-left: 20px;
+  margin-right: 20px;
+  display: flex;
+  justify-content:flex-start;
+  align-items: top;
+  flex-grow:1;
+  flex-direction: column;
+}
+@media (max-width:800px) {
+		.content .menu{  
+			display: none;
+		}
+	}
 </style>
