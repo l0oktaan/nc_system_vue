@@ -22,8 +22,8 @@
             </div>
         </div>
         <div class="detail">            
-            <div :class="selected.includes(item.id) ? 'audit active' : 'audit'" v-for="item in audits" :key="item.id" @click="select_item(item.id)">
-                <div class="show">
+            <div :class="selected.includes(item.id) ? 'audit active' : 'audit'" v-for="item in audits" :key="item.id">
+                <div class="show"  @click="select_item(item.id)">
                     <v-row>
                         <v-col cols="7"><b>การตรวจสอบภายในประจำปี {{item.audit_year}} ครั้งที่ {{item.audit_order}}</b></v-col>
                         <v-col cols="4"><b>({{getThaiDate(item.start_date) + ' - ' + getThaiDate(item.end_date)}})</b></v-col>
@@ -59,6 +59,20 @@
                             </div>
                         </template>
                         <span>แก้ไข</span>
+                    </v-tooltip>
+                    <v-tooltip left>
+                        <template v-slot:activator="{ on, attrs }">                        
+                            <div 
+                                class="tool del"
+                                color="primary"
+                                dark
+                                v-bind="attrs"
+                                v-on="on"
+                            >
+                                <i class="fas fa-trash"></i>
+                            </div>
+                        </template>
+                        <span>ลบ</span>
                     </v-tooltip>
                     
                 </div>              
@@ -160,8 +174,7 @@ export default {
                     },
                 ]
             },
-        ],
-        
+        ],        
     }),
     methods: {
         saveAudit(){
@@ -178,16 +191,16 @@ export default {
         },
         select_item(id){
             if (this.selected.includes(id)){
-                this.selected.pop(id)
+                // this.selected.pop(id)
                 // let index = this.selected.findIndex(x=>x == id)
                 // this.$nextTick(()=>{
                 //     this.selected = JSON.parse(JSON.stringify(this.selected.slice(index)))
-                // })                
+                // })           
+                
+                this.selected = this.selected.filter(x=>x !== id);
             }else{
                 this.selected.push(id);
-            }
-            
-            
+            }           
         }
     }
 }
@@ -215,6 +228,12 @@ export default {
     box-shadow: 2px 2px 2px #bebebe,
                 -2px -2px 2px #ffffff; */
 }
+.tools{
+    display: flex;
+    justify-content:center;
+    align-items: top;
+    flex-direction: row;
+}
 .tools .tool{
     display: flex;
     justify-content:center;
@@ -225,6 +244,14 @@ export default {
     border-radius: 10px;
     border: solid 0.5px #2c3e50;
     transition: 0.1s;
+    margin-left: 5px;
+}
+.tools .tool.del{
+    border: solid 0.5px #830000;
+    color:#830000;
+}
+.tools .tool.del:hover{
+    background: #830000;
 }
 .tools .tool:hover{
     color: #fff;
