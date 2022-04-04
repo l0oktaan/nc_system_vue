@@ -11,5 +11,5 @@ Vue.use(Vuetify,{
   });
 
 export default new Vuetify({
-    iconfont: "mdi" | "fa" | "fas"
+    iconfont: "mdi" | "fa" | "fas" | "fa-solid"
 });
