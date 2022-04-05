@@ -21,13 +21,21 @@
                 </v-tooltip>                
             </div>
         </div>
-        <div class="detail">            
-            <div :class="selected.includes(item.id) ? 'audit active' : 'audit'" v-for="item in audits" :key="item.id">
+        <div class="detail">
+            <div  v-for="item in audits" :key="item.id">                
+                <result-year :item="item"></result-year>
+            </div>
+            <!-- <div :class="selected.includes(item.id) ? 'audit active' : 'audit'" v-for="item in audits" :key="item.id">
                 <div class="show"  @click="select_item(item.id)">
                     <v-row>
                         <v-col cols="7"><b>การตรวจสอบภายในประจำปี {{item.audit_year}} ครั้งที่ {{item.audit_order}}</b></v-col>
                         <v-col cols="4"><b>({{getThaiDate(item.start_date) + ' - ' + getThaiDate(item.end_date)}})</b></v-col>
                         <v-col cols="1" style="text-align:right"><i class="fas fa-angle-right"></i></v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col cols="12">
+                            <my-donut :series="major.num" :labels="major.labels" ititle="Major"></my-donut>
+                        </v-col>
                     </v-row>
                     <div class="data">
                         <v-row>
@@ -76,7 +84,7 @@
                     </v-tooltip>
                     
                 </div>              
-            </div>
+            </div> -->
              
         </div>
         <v-dialog
@@ -96,15 +104,20 @@
 
 <script>
 import AuditForm from "@/components/AuditForm.vue"
+
+import ResultYear from '@/components/ResultYear'
 export default {
     components:{
-        AuditForm
+        AuditForm,
+        
+        ResultYear
     },
     data: ()=>({
         status: 'new',
         dialog: false,
         selected: [],
         arr_list: [],
+        
         audits: [
             {
                 id: 1,
@@ -127,7 +140,7 @@ export default {
                         remain: 0
                     },
                     {
-                        level: 'Observatio',
+                        level: 'Observation',
                         total: 0,
                         closed: 0,
                         remain: 0
@@ -161,7 +174,7 @@ export default {
                         remain: 0
                     },
                     {
-                        level: 'Observatio',
+                        level: 'Observation',
                         total: 0,
                         closed: 0,
                         remain: 0
@@ -176,7 +189,20 @@ export default {
             },
         ],        
     }),
+    mounted(){
+        this.fetchData();
+    },
     methods: {
+        fetchData(){
+
+        },
+        // filterNC(year){
+        //     let list = this.audits.filter(x=>x.audit_year == '2564');
+        //     this.major = this.list[0].non_conformances.filter(x=>x.level == 'Major');
+        //     this.minor = this.list[0].non_conformances.filter(x=>x.level == 'Minor');
+        //     this.obs = this.list[0].non_conformances.filter(x=>x.level == 'obs');
+        //     this.major = this.list[0].non_conformances.filter(x=>x.level == 'Major');
+        // },
         saveAudit(){
             this.dialog = false
         },
@@ -228,39 +254,7 @@ export default {
     box-shadow: 2px 2px 2px #bebebe,
                 -2px -2px 2px #ffffff; */
 }
-.tools{
-    display: flex;
-    justify-content:center;
-    align-items: top;
-    flex-direction: row;
-}
-.tools .tool{
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    height: 50px;
-    width: 50px;
-    cursor: pointer;
-    border-radius: 10px;
-    border: solid 0.5px #2c3e50;
-    transition: 0.1s;
-    margin-left: 5px;
-}
-.tools .tool.del{
-    border: solid 0.5px #830000;
-    color:#830000;
-}
-.tools .tool.del:hover{
-    background: #830000;
-}
-.tools .tool:hover{
-    color: #fff;
-    background: #2c3e50;
-    box-shadow: 2px 2px 2px #bebebe,
-                -2px -2px 2px #ffffff;
-    transform: translateX(1px);
-    transform: translateY(1px);
-}
+
 .content .detail{
     padding-left: 10px;
     padding-right: 10px;
