@@ -254,7 +254,27 @@ export default {
     box-shadow: 2px 2px 2px #bebebe,
                 -2px -2px 2px #ffffff; */
 }
+.tools .tool{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: solid 0.5px #043711;
+    transition: 0.1s;
+    margin-left: 5px;
+}
 
+.tools .tool:hover{
+    color: #fff;
+    background: #043711;
+    box-shadow: 2px 2px 2px #bebebe,
+                -2px -2px 2px #ffffff;
+    transform: translateX(1px);
+    transform: translateY(1px);
+}
 .content .detail{
     padding-left: 10px;
     padding-right: 10px;
@@ -262,7 +282,7 @@ export default {
     height: 100vh;
     
 }
-.content .detail .audit{
+/* .content .detail .audit{
     
     
     display: flex;
@@ -315,5 +335,5 @@ export default {
 .content .detail .audit.active .data{
     height: auto;
     display: block;
-}
+} */
 </style>

@@ -1,6 +1,6 @@
 <template>
 <div class="pie">
-    <apexchart  type="donut" width="450" :options="chartOptions" :series="series"></apexchart>
+    <apexchart  type="donut" width="250" :options="chartOptions" :series="series"></apexchart>
 </div>
   
 </template>
@@ -15,20 +15,12 @@ export default {
             arrValue: [44, 55, 41],
             // series: this.list.count,
             chartOptions: {
-                colors : ['#A5978B', '#8D5B4C', '#FF9800', '#43BCCD' ,'#1B998B' ,'#90EE7E','#1B998B','#4CAF50'],
+                colors : ['#009090','#E0787C'],
                 chart: {
                     type: 'donut',
+                   
                 },
-                theme: {
-                    mode: 'light', 
-                    palette: 'palette4', 
-                    monochrome: {
-                        enabled: false,
-                        color: '#255aee',
-                        shadeTo: 'light',
-                        shadeIntensity: 0.65
-                    },
-                },
+                
                 labels: this.labels,
                 plotOptions: {
                     pie: {
@@ -39,18 +31,18 @@ export default {
                         offsetY: 0,
                         customScale: 1,
                         dataLabels: {
-                            offset: 0,
+                            offset: 20,
                             minAngleToShowLabel: 10
                         }, 
                         donut: {
-                            size: '50%',
+                            size: '70%',
                             background: 'transparent',
                             labels: {
                                 show: true,                              
                                 value: {
                                     show: true,
-                                    fontSize: '30px',
-                                    fontFamily: 'Prompt',
+                                    fontSize: '20px',
+                                    fontFamily: 'Sarabun',
                                     fontWeight: 800,
                                     color: undefined,
                                     offsetY: 16,
@@ -60,11 +52,12 @@ export default {
                                 },
                                 total: {
                                     show: true,
-                                    fontSize: '20px',
-                                    fontWeight: 800,
-                                    fontFamily: 'Prompt',
+                                    fontSize: '18px',
+                                    fontWeight: 600,
+                                    fontFamily: 'Sarabun',
                                     label: 'ทั้งหมด',
-                                    color: '#1976d2'
+                                    color: '#1976d2',
+                                    
                                     
                                 }
                             },
@@ -76,8 +69,8 @@ export default {
                     text: this.ititle,
                     style: {
                         fontSize:  '20px',
-                        fontFamily: 'Prompt',
-                        color: '#1976d2',
+                        fontFamily: 'Sarabun',
+                        color: '#2c3e50',
                     }
                 },
                 fill: {
@@ -91,12 +84,30 @@ export default {
                         // return [val.toFixed(0)]
                         return [opts.w.globals.labels[opts.seriesIndex],opts.w.globals.series[opts.seriesIndex]]
                     },
+                   
                     style: {
-                        fontSize: '18px',
-                        colors: ['#333333'],
-                        fontFamily: 'Prompt'
+                        fontSize: '14px',
+                        colors: ['#000'],
+                        fontFamily: 'Sarabun',
+                        fontWeight: '600',
                     },
-                    
+                    // background: {
+                    //     enabled: true,
+                    //     foreColor: '#fff',
+                    //     padding: 4,
+                    //     borderRadius: 5,
+                    //     borderWidth: 0,
+                    //     borderColor: '#fff',
+                    //     opacity: 0.5,
+                    //     dropShadow: {
+                    //         enabled: false,
+                    //         top: 1,
+                    //         left: 1,
+                    //         blur: 1,
+                    //         color: '#000',
+                    //         opacity: 0.45
+                    //     }
+                    // },
                     dropShadow: {
                         enabled: false,
                         top: 3,

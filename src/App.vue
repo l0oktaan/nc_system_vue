@@ -3,7 +3,7 @@
     <top-nav></top-nav>
     <div class="content">
       <div class="menu">
-        <main-menu></main-menu>
+        <!-- <main-menu></main-menu> -->
       </div>
       <div class="detail">
         <router-view/>        
@@ -13,11 +13,11 @@
 </template>
 <script>
 import TopNav from "./components/TopNav.vue"
-import MainMenu from "./components/MainMenu.vue"
+// import MainMenu from "./components/MainMenu.vue"
 export default {
   components: {
     TopNav,
-    MainMenu
+    // MainMenu
   }
   
 }

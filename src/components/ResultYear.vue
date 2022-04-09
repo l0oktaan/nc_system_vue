@@ -1,31 +1,15 @@
 <template>
-    <div>
-        <div class="show" >
-            
+    <div class="audit">
+        <div class="show">            
             <v-row>
                 <v-col cols="7"><b>การตรวจสอบภายในประจำปี {{item.audit_year}} ครั้งที่ {{item.audit_order}}</b></v-col>
                 <v-col cols="4"><b>({{getThaiDate(item.start_date) + ' - ' + getThaiDate(item.end_date)}})</b></v-col>
                 <v-col cols="1" style="text-align:right"><i class="fas fa-angle-right"></i></v-col>
-            </v-row>
-            <v-row>
-                <v-col cols="12">
-                    <!-- <my-donut :series="major.num" :labels="major.labels" ititle="Major"></my-donut> -->
-                </v-col>
-            </v-row>
-            <!-- <div class="data">
-                <v-row>
-                    <v-col>ระดับ</v-col>
-                    <v-col>จำนวน</v-col>
-                    <v-col>ดำเนินการแล้ว</v-col>
-                    <v-col>คงเหลือ</v-col>
-                </v-row>
-                <v-row v-for="(nc,index) in item.non_conformances" :key="index">
-                    <v-col>{{nc.level}}</v-col>
-                    <v-col>{{nc.total}}</v-col>
-                    <v-col>{{nc.closed}}</v-col>
-                    <v-col>{{nc.remain}}</v-col>
-                </v-row> 
-            </div>-->
+            </v-row>    
+            <div class="donut">
+                <my-donut :series="nc.num" :labels="nc.label" :ititle="nc.level" v-for="(nc,index) in nc_list" :key="index"></my-donut>
+                
+            </div>        
         </div>
           
         <div class="tools">
@@ -58,14 +42,15 @@
                 <span>ลบ</span>
             </v-tooltip>
             
-        </div>              
+        </div> 
+                     
     </div>
 </template>
 <script>
-// import MyDonut from '@/components/MyDonut'    
+import MyDonut from '@/components/MyDonut'    
 export default{
     components:{
-        // MyDonut
+        MyDonut
     },
     props:["item"],
     data:()=> ({
@@ -73,6 +58,12 @@ export default{
         minor: null,
         obs: null,
         ofi: null,
+        nc_list: [
+            {label: ['ปิดแล้ว','คงเหลือ'],num: [1,0],level:"Major"},
+            {label: ['ปิดแล้ว','คงเหลือ'],num: [1,5],level:"Minor"},
+            {label: ['ปิดแล้ว','คงเหลือ'],num: [2,12],level:"Observe"},
+            {label: ['ปิดแล้ว','คงเหลือ'],num: [2,9],level:"OFI"},
+        ]
     }),
     methods: {
         getThaiDate(item){        
@@ -88,6 +79,32 @@ export default{
 }
 </script>
 <style scoped>
+.audit{
+    width: 100%;
+    display: flex;
+    justify-content:space-between;
+    align-items: top;
+    flex-direction: row;
+    
+}
+.audit .show{
+    min-height: 50px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    flex:1;
+    cursor: pointer;    
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px #bebebe,
+                -2px -2px 2px #ffffff;
+}
+.audit .show .donut{
+    display: flex;
+    justify-content:center;
+    align-items: top;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 .tools{
     display: flex;
     justify-content:center;
@@ -120,5 +137,35 @@ export default{
                 -2px -2px 2px #ffffff;
     transform: translateX(1px);
     transform: translateY(1px);
+}
+.audit .data .row{
+    margin-top: 0px;
+}
+.audit .show i:first-of-type{
+    font-size: 1.5em;
+    text-align: right;
+    padding-left: 10px;
+    transition: 0.25s;
+}
+.audit .row .col{
+    text-align: left;
+}
+.audit .show:hover{
+    
+    box-shadow: inset 2px 2px 2px #bebebe,
+                inset -2px -2px 2px #ffffff;
+}
+.audit .show.active{
+    background: #fff;
+    box-shadow: inset 2px 2px 2px #bebebe,
+                inset -2px -2px 2px #ffffff;
+}
+.audit .show.active i:first-of-type{    
+    transform: rotate(90deg);
+    height: 24px;
+}
+.audit .show.active .data{
+    height: auto;
+    display: block;
 }
 </style>
