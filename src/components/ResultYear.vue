@@ -100,7 +100,7 @@ export default{
 }
 .audit .show .donut{
     display: flex;
-    justify-content:center;
+    justify-content:space-around;
     align-items: top;
     flex-direction: row;
     flex-wrap: wrap;

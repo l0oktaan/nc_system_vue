@@ -2,7 +2,7 @@
 <div class="nav">    
     <div class="logo">
         <img src="@/assets/logo.png" alt="">        
-        <h2>NC System<br><small>ระบบติดตามความไม่สอดคล้อง จากการตรวจสอบภายใน</small></h2>         
+        <h4>ระบบติดตามความไม่สอดคล้อง จากการตรวจสอบภายใน <br>NC SYSTEM</h4>         
     </div>
     <div class="menu">    
         <router-link to="/" class="list">
@@ -30,8 +30,7 @@
             <i class="icon ion-md-menu"></i>
         </div>  
         <div class="user">
-            <i class="icon ion-md-contact"></i>
-            <h3>{{user.name}}</h3>
+            <i class="icon ion-md-contact"></i>            
         </div>
         
     </div>
@@ -74,7 +73,7 @@ export default {
 .nav .logo img{
     padding-right: 20px;
 }    
-.nav .logo h2{
+.nav .logo h4{
     font-weight: 400;
     text-align: left;
 }
@@ -158,17 +157,22 @@ export default {
     font-size: 1em;
     margin-left: 10px;
     font-weight: 400;
+    padding-bottom: 20px;
 }
-/* .list:hover{
-    border-radius: 10px;
-    box-shadow: inset 2px 2px 2px #bebebe,
-                inset -2px -2px 2px #ffffff; 
-} */
+
 .router-link-exact-active{
     /* border-radius: 10px;
     box-shadow: inset 2px 2px 5px #bebebe,
                 inset -2px -2px 5px #ffffff; */
+                
+    font-weight: bold;            
     color: #145396;
+}
+.router-link-exact-active::before{
+    content: '\f0da';
+    font-family: "Font Awesome 5 Free";
+    
+    
 }
 @media (max-width:800px){
     .nav{

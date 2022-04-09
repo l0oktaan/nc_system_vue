@@ -129,7 +129,7 @@ export default {
                     breakpoint: 800,
                     options: {
                         chart: {
-                            width: 800
+                            width: 250
                         },
                         legend: {
                             position: 'bottom'
