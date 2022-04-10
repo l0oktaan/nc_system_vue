@@ -168,12 +168,7 @@ export default {
     font-weight: bold;            
     color: #145396;
 }
-.router-link-exact-active::before{
-    content: '\f0da';
-    font-family: "Font Awesome 5 Free";
-    
-    
-}
+
 @media (max-width:800px){
     .nav{
         flex-direction: column;
