@@ -2,9 +2,9 @@
   <v-app>
     <top-nav></top-nav>
     <div class="content">
-      <div class="menu">
-        <!-- <main-menu></main-menu> -->
-      </div>
+      <!-- <div class="menu">
+        <main-menu></main-menu>
+      </div> -->
       <div class="detail">
         <router-view/>        
       </div>
@@ -23,6 +23,11 @@ export default {
 }
 </script>
 <style scoped>
+  @font-face {
+    font-family: "Sarabun";
+    src: local("Sarabun"),
+    url(@/assets/fonts/Sarabun-Regular.ttf) format("truetype");
+  }
 #app {
   font-family: Sarabun, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -59,5 +64,9 @@ export default {
 		.content .menu{  
 			display: none;
 		}
+    .content .detail{  
+      margin-left: 5px;
+      margin-right: 5px;
+    }
 	}
 </style>

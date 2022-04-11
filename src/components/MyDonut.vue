@@ -1,6 +1,10 @@
 <template>
 <div class="pie">
-    <apexchart  type="donut" width="250" :options="chartOptions" :series="series"></apexchart>
+    <div class="title">
+        <span>{{ititle}}</span>
+    </div>
+    
+    <apexchart  type="donut" width="230" :options="chartOptions" :series="series"></apexchart>
 </div>
   
 </template>
@@ -19,6 +23,14 @@ export default {
                 chart: {
                     type: 'donut',
                    
+                },   
+                stroke:{
+                    show: false,
+                    curve: 'smooth',
+                    lineCap: 'round',
+                    colors: ['#FFFFFF'],
+                    width: 2,
+                    dashArray: 0,
                 },
                 
                 labels: this.labels,
@@ -66,9 +78,9 @@ export default {
                     }
                 },
                 title: {
-                    text: this.ititle,
+                    text: undefined, //this.ititle,
                     style: {
-                        fontSize:  '20px',
+                        fontSize:  '18px',
                         fontFamily: 'Sarabun',
                         color: '#2c3e50',
                     }
@@ -153,4 +165,15 @@ export default {
 .pie {
     margin-top: 20px;
 }
+.pie .title{
+    text-align: left;
+}
+.pie .title span{
+    font-size: 0.8em;
+    text-align: left;
+    font-weight: 600;
+    padding: 2px 5px 2px 5px;
+    border: 1px solid #000;
+    border-radius: 3px;
+}   
 </style>

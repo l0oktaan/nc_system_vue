@@ -1,11 +1,15 @@
 <template>
     <div class="audit">
-        <div class="show">            
-            <v-row>
-                <v-col cols="7"><b>การตรวจสอบภายในประจำปี {{item.audit_year}} ครั้งที่ {{item.audit_order}}</b></v-col>
-                <v-col cols="4"><b>({{getThaiDate(item.start_date) + ' - ' + getThaiDate(item.end_date)}})</b></v-col>
+        <div class="show">  
+            <div class="title">
+                <b>การตรวจสอบภายในประจำปี {{item.audit_year}} ครั้งที่ {{item.audit_order}} </b>
+                <b>({{getThaiDate(item.start_date) + ' - ' + getThaiDate(item.end_date)}})</b>
+            </div>                      
+            <!-- <v-row>
+                <v-col cols="12" md="8"><b>การตรวจสอบภายในประจำปี {{item.audit_year}} ครั้งที่ {{item.audit_order}}</b></v-col>
+                <v-col cols="12" md="4"><b>({{getThaiDate(item.start_date) + ' - ' + getThaiDate(item.end_date)}})</b></v-col>
                 <v-col cols="1" style="text-align:right"><i class="fas fa-angle-right"></i></v-col>
-            </v-row>    
+            </v-row>     -->
             <div class="donut">
                 <my-donut :series="nc.num" :labels="nc.label" :ititle="nc.level" v-for="(nc,index) in nc_list" :key="index"></my-donut>
                 
@@ -13,14 +17,25 @@
         </div>
           
         <div class="tools">
+                                   
+                    <div 
+                        class="tool menu"
+                        color="primary"
+                        dark
+                        
+                    >
+                        <i class="fas fa-ellipsis-v"></i>
+                    </div>
+               
             <v-tooltip left>
                 <template v-slot:activator="{ on, attrs }">                        
                     <div 
-                        class="tool"
+                        class="tool edit"
                         color="primary"
                         dark
                         v-bind="attrs"
                         v-on="on"
+                        @click="show_edit"
                     >
                         <i class="fas fa-pen"></i>
                     </div>
@@ -59,7 +74,7 @@ export default{
         obs: null,
         ofi: null,
         nc_list: [
-            {label: ['ปิดแล้ว','คงเหลือ'],num: [1,0],level:"Major"},
+            {label: ['ปิดแล้ว','คงเหลือ'],num: [0,0],level:"Major"},
             {label: ['ปิดแล้ว','คงเหลือ'],num: [1,5],level:"Minor"},
             {label: ['ปิดแล้ว','คงเหลือ'],num: [2,12],level:"Observe"},
             {label: ['ปิดแล้ว','คงเหลือ'],num: [2,9],level:"OFI"},
@@ -75,6 +90,11 @@ export default{
                 return "";
             }
         },
+        show_edit(){
+            this.$emit("show_audit_form",{
+                id: 1
+            });
+        }
     }
 }
 </script>
@@ -98,6 +118,13 @@ export default{
     box-shadow: 2px 2px 2px #bebebe,
                 -2px -2px 2px #ffffff;
 }
+.audit .show .title{
+    text-align: left;
+    
+}
+.audit .show .title b{
+    font-size: 0.8em;
+}
 .audit .show .donut{
     display: flex;
     justify-content:space-around;
@@ -107,30 +134,67 @@ export default{
 }
 .tools{
     display: flex;
-    justify-content:center;
+    justify-content:flex-start;
     align-items: top;
-    flex-direction: row;
+    flex-direction: column;
+    position: relative;
+    width: 55px;
+    height: 55px;
 }
 .tools .tool{
     display: flex;
     justify-content:center;
     align-items: center;
+    background: #e0e0e0;
     height: 50px;
     width: 50px;
     cursor: pointer;
     border-radius: 10px;
-    border: solid 0.5px #2c3e50;
-    transition: 0.1s;
+    /* border: solid 0.5px #2c3e50; */
+    transition: 0.4s;
     margin-left: 5px;
+    box-shadow: 2px 2px 5px #bebebe,
+                -2px -2px 5px #ffffff;
+}
+
+.tools .tool.menu{
+    position: absolute;
+    top: 0;
+    z-index:1005;    
+
+}
+.tools:hover .tool.edit{
+    top: 55px
+}
+.tools:hover .tool.del{
+    top: 110px
+}
+
+.tools .tool.edit{
+    position: absolute;
+    top:0;
+    z-index:1004;
+    
+
 }
 .tools .tool.del{
-    border: solid 0.5px #830000;
+    position: absolute;
+    top:0;
+    /* border: solid 0.5px #830000; */
     color:#830000;
+    z-index:1004;
+    
 }
 .tools .tool.del:hover{
     background: #830000;
+    color: #fff;
+    
+    box-shadow: 2px 2px 2px #bebebe,
+                -2px -2px 2px #ffffff;
+    transform: translateX(1px);
+    transform: translateY(1px);
 }
-.tools .tool:hover{
+.tools .tool.edit:hover{
     color: #fff;
     background: #2c3e50;
     box-shadow: 2px 2px 2px #bebebe,
@@ -167,5 +231,11 @@ export default{
 .audit .show.active .data{
     height: auto;
     display: block;
+}
+@media (max-width:800px){
+    .audit .show .title{
+        text-align: center;
+        
+    }
 }
 </style>

@@ -23,68 +23,9 @@
         </div>
         <div class="detail">
             <div  v-for="item in audits" :key="item.id">                
-                <result-year :item="item"></result-year>
+                <result-year :item="item" @show_audit_form="show_audit_form"></result-year>
             </div>
-            <!-- <div :class="selected.includes(item.id) ? 'audit active' : 'audit'" v-for="item in audits" :key="item.id">
-                <div class="show"  @click="select_item(item.id)">
-                    <v-row>
-                        <v-col cols="7"><b>การตรวจสอบภายในประจำปี {{item.audit_year}} ครั้งที่ {{item.audit_order}}</b></v-col>
-                        <v-col cols="4"><b>({{getThaiDate(item.start_date) + ' - ' + getThaiDate(item.end_date)}})</b></v-col>
-                        <v-col cols="1" style="text-align:right"><i class="fas fa-angle-right"></i></v-col>
-                    </v-row>
-                    <v-row>
-                        <v-col cols="12">
-                            <my-donut :series="major.num" :labels="major.labels" ititle="Major"></my-donut>
-                        </v-col>
-                    </v-row>
-                    <div class="data">
-                        <v-row>
-                            <v-col>ระดับ</v-col>
-                            <v-col>จำนวน</v-col>
-                            <v-col>ดำเนินการแล้ว</v-col>
-                            <v-col>คงเหลือ</v-col>
-                        </v-row>
-                        <v-row v-for="(nc,index) in item.non_conformances" :key="index">
-                            <v-col>{{nc.level}}</v-col>
-                            <v-col>{{nc.total}}</v-col>
-                            <v-col>{{nc.closed}}</v-col>
-                            <v-col>{{nc.remain}}</v-col>
-                        </v-row>
-                    </div>
-                </div>
-                  
-                <div class="tools">
-                    <v-tooltip left>
-                        <template v-slot:activator="{ on, attrs }">                        
-                            <div 
-                                class="tool"
-                                color="primary"
-                                dark
-                                v-bind="attrs"
-                                v-on="on"
-                            >
-                                <i class="fas fa-pen"></i>
-                            </div>
-                        </template>
-                        <span>แก้ไข</span>
-                    </v-tooltip>
-                    <v-tooltip left>
-                        <template v-slot:activator="{ on, attrs }">                        
-                            <div 
-                                class="tool del"
-                                color="primary"
-                                dark
-                                v-bind="attrs"
-                                v-on="on"
-                            >
-                                <i class="fas fa-trash"></i>
-                            </div>
-                        </template>
-                        <span>ลบ</span>
-                    </v-tooltip>
-                    
-                </div>              
-            </div> -->
+            
              
         </div>
         <v-dialog
@@ -227,6 +168,10 @@ export default {
             }else{
                 this.selected.push(id);
             }           
+        },
+        show_audit_form(res){
+            console.log(res.id)
+            this.dialog = true
         }
     }
 }
@@ -262,9 +207,11 @@ export default {
     width: 50px;
     cursor: pointer;
     border-radius: 10px;
-    border: solid 0.5px #043711;
+    /* border: solid 0.5px #bebebe; */
     transition: 0.1s;
     margin-left: 5px;
+    box-shadow: 2px 2px 5px #bebebe,
+                -2px -2px 5px #ffffff;
 }
 
 .tools .tool:hover{
@@ -336,4 +283,13 @@ export default {
     height: auto;
     display: block;
 } */
+@media (max-width:800px){
+    .content .detail{
+        padding-left: 0px;
+        padding-right: 0px;
+        width: 100%;
+        height: 100vh;
+        
+    }
+}
 </style>

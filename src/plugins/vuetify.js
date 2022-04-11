@@ -1,4 +1,6 @@
-import "@fortawesome/fontawesome-free/css/all.css";
+// import "@fortawesome/fontawesome-free/css/all.css";
+import '@/assets/fontawesome/all.min.css';
+import '@/scss/variables.scss';
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import { Ripple } from 'vuetify/lib/directives'

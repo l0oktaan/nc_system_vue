@@ -27,10 +27,10 @@
     </div>
     <div class="nav2">      
         <div class="menu-mini">
-            <i class="icon ion-md-menu"></i>
+            <i class="fas fa-bars"></i>
         </div>  
         <div class="user">
-            <i class="icon ion-md-contact"></i>            
+            <i class="fas fa-user-circle"></i>            
         </div>
         
     </div>
@@ -103,7 +103,7 @@ export default {
     padding-right: 15px;
     transition: 0.25s;
 }
-.user .ion-md-contact{
+.user .fas.fa-user-circle{
     font-size: 2em;
     padding: 10px;
     transition: 0.25s;
@@ -169,7 +169,7 @@ export default {
     color: #145396;
 }
 
-@media (max-width:800px){
+@media (max-width:1055px){
     .nav{
         flex-direction: column;
         height: 150px;
@@ -205,14 +205,14 @@ export default {
         display: none;
     }
 }
-@media (max-width:600px){
+@media (max-width:500px){
     
     .logo img{
         width: 65px;
     }
-    .logo h2{
+    .logo h4{
         /* text-align: center; */
-        font-size: 0.98em;
+        font-size: 0.8em;
     }
 }
 </style>
