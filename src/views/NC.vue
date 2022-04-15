@@ -32,6 +32,8 @@
         <div class="nc_list">
             <nc-cover v-for="(item,index) in nc_list" :key="index" 
                 :nc="item"
+                @showDetail="showDetail"
+                
             >
             </nc-cover>
         </div>
@@ -45,6 +47,7 @@
             <nc-detail
                :id="nc_id"
                :status="nc_status"
+               @hideDetail="hideDetail"
             >
             </nc-detail>
         </v-dialog>
@@ -116,14 +119,16 @@ export default {
             )
         },
         async showDetail(res){
+            console.log('emit');
             this.nc_id = await res.id;
             this.nc_status = await res.status;
-            this.dialog = true;
+            this.dialog = await true;
         },
-        hideDetail(){
-            this.dialog = false;
-            this.nc_id = 0;
-            this.nc_status = 'new';
+        async hideDetail(){
+            console.log("closed");
+            this.nc_id = await 0;
+            this.nc_status = await 'new';
+            this.dialog = await false;
         }
     },
 }
@@ -187,5 +192,8 @@ export default {
 }
 .content .nc_list{
 
+}
+.v-dialog__content.v-dialog__content--active{
+    z-index:1006!important;
 }
 </style>

@@ -56,30 +56,14 @@
                     </div>
                 </template>
                 <span>ลบ</span>
-            </v-tooltip>
-            
-        </div> 
-        <v-dialog
-            v-model="dialog"
-            fullscreen
-            hide-overlay
-            transition="dialog-bottom-transition"
-            scrollable
-        >
-            <nc-detail
-               :id="nc.id"
-               status="edit"
-            >
-            </nc-detail>
-        </v-dialog>
+            </v-tooltip>     
+        </div>        
     </div>
 </template>
 
 <script>
-import NCDetail from '@/components/NCDetail.vue'
 export default {
     components:{
-        'nc-detail' : NCDetail
     },
     props: ['nc'],
     data: ()=> ({
@@ -88,7 +72,10 @@ export default {
     methods:{
         showDetail(){
             console.log("Show");
-            this.dialog = true;
+            this.$emit("showDetail",{
+                id: this.nc.id,
+                status: 'edit'
+            });
         }
     }
 }

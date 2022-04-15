@@ -45,6 +45,21 @@
             <v-tooltip left>
                 <template v-slot:activator="{ on, attrs }">                        
                     <div 
+                        class="tool nc"
+                        color="primary"
+                        dark
+                        v-bind="attrs"
+                        v-on="on"
+                        @click="show_edit"
+                    >
+                        <b>NC</b>
+                    </div>
+                </template>
+                <span>NC</span>
+            </v-tooltip>
+            <v-tooltip left>
+                <template v-slot:activator="{ on, attrs }">                        
+                    <div 
                         class="tool del"
                         color="primary"
                         dark
@@ -166,11 +181,21 @@ export default{
 .tools:hover .tool.edit{
     top: 55px
 }
+.tools:hover .tool.nc{
+    top: 107px
+}
 .tools:hover .tool.del{
-    top: 110px
+    top: 160px
 }
 
 .tools .tool.edit{
+    position: absolute;
+    top:0;
+    z-index:1004;
+    
+
+}
+.tools .tool.nc{
     position: absolute;
     top:0;
     z-index:1004;
@@ -195,6 +220,14 @@ export default{
     transform: translateY(1px);
 }
 .tools .tool.edit:hover{
+    color: #fff;
+    background: #2c3e50;
+    box-shadow: 2px 2px 2px #bebebe,
+                -2px -2px 2px #ffffff;
+    transform: translateX(1px);
+    transform: translateY(1px);
+}
+.tools .tool.nc:hover{
     color: #fff;
     background: #2c3e50;
     box-shadow: 2px 2px 2px #bebebe,
