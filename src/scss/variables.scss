@@ -1,5 +1,16 @@
-$body-font-family: 'Sarabun', serif;
-$font-family: 'Sarabun', serif;
+@font-face {
+    font-family: "Sarabun";
+    src: local("Sarabun"),
+    url(@/assets/fonts/Sarabun-Regular.ttf) format("truetype");
+  }
+  @font-face {
+    font-family: "Kanit";
+    src: local("Kanit"),
+    url(@/assets/fonts/Kanit-Regular.ttf) format("truetype");
+  }  
+$body-font-family: 'Kanit', serif;
+$font-family: 'Kanit', serif;
+
 
 
 .donut .pie text.apexcharts-title-text{

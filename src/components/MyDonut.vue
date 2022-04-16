@@ -19,7 +19,7 @@ export default {
             arrValue: [44, 55, 41],
             // series: this.list.count,
             chartOptions: {
-                colors : ['#009090','#E0787C'],
+                colors : ['#0D8C00','#DE3163'],
                 chart: {
                     type: 'donut',
                    
@@ -43,8 +43,9 @@ export default {
                         offsetY: 0,
                         customScale: 1,
                         dataLabels: {
-                            offset: 20,
-                            minAngleToShowLabel: 10
+                            offset: 30,
+                            minAngleToShowLabel: 10,
+                            
                         }, 
                         donut: {
                             size: '70%',
@@ -56,19 +57,21 @@ export default {
                                     fontSize: '20px',
                                     fontFamily: 'Sarabun',
                                     fontWeight: 800,
-                                    color: undefined,
-                                    offsetY: 16,
+                                    color: '#fff',
+                                    offsetY: 12,
+                                    
                                     formatter: function (val) {
                                         return val
-                                    }
+                                    },
+                                    
                                 },
                                 total: {
                                     show: true,
                                     fontSize: '18px',
-                                    fontWeight: 600,
+                                    fontWeight: 300,
                                     fontFamily: 'Sarabun',
                                     label: 'ทั้งหมด',
-                                    color: '#1976d2',
+                                    color: '#fff',
                                     
                                     
                                 }
@@ -86,7 +89,7 @@ export default {
                     }
                 },
                 fill: {
-                    type: 'gradient',
+                    type: 'solid',
                 },
                 dataLabels: {
                     
@@ -99,9 +102,9 @@ export default {
                    
                     style: {
                         fontSize: '14px',
-                        colors: ['#000'],
+                        colors: ['#fff'],
                         fontFamily: 'Sarabun',
-                        fontWeight: '600',
+                        fontWeight: '100',
                     },
                     // background: {
                     //     enabled: true,
@@ -164,6 +167,17 @@ export default {
 <style scope>
 .pie {
     margin-top: 20px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    padding: 10px 20px;
+    transition: 0.25s;
+}
+.pie:hover{
+    background: rgba( 255, 255, 255, 0.4 );
 }
 .pie .title{
     text-align: left;
@@ -171,9 +185,14 @@ export default {
 .pie .title span{
     font-size: 0.8em;
     text-align: left;
-    font-weight: 600;
+    font-weight: 300;
     padding: 2px 5px 2px 5px;
-    border: 1px solid #000;
+    border: 1px solid rgba(255, 255, 255,0.3);
     border-radius: 3px;
-}   
+    transition: 0.25s;
+}  
+.pie:hover .title span{
+    background: rgba( 255, 255, 255, 0.25 );
+    border: 1px solid rgba(255, 255, 255,0.8);
+} 
 </style>

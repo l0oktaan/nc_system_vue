@@ -50,18 +50,21 @@ export default {
 <style scoped>
 
 .nav{        
+    
     height: 100px;
-    background: #f0f0f0;
+    
     display: flex;
     justify-content: space-between;
     align-items: center;  
     margin: 20px;
     
     padding: 30px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
     border-radius: 10px;
-    background: #e0e0e0;
-    box-shadow:  5px 5px 10px #bebebe,
-                -5px -5px 10px #ffffff;   
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .nav .logo{
@@ -126,6 +129,7 @@ export default {
     align-items: flex-end;
     flex-direction: row;
     /* background: #145396; */
+    
 }
 
 .list{
@@ -138,7 +142,8 @@ export default {
     
     transition: 0.25s;
     text-decoration: none;
-    color: black;
+    color: #ffffff;
+    
 }
 .list .list-icon{
     display: none;
@@ -165,8 +170,8 @@ export default {
     box-shadow: inset 2px 2px 5px #bebebe,
                 inset -2px -2px 5px #ffffff; */
                 
-    font-weight: bold;            
-    color: #145396;
+    font-weight: 800!important;            
+    color: #052344!important;
 }
 
 @media (max-width:1055px){

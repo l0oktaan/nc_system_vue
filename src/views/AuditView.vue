@@ -195,9 +195,13 @@ export default {
     margin-bottom: 10px;
     height: 60px;
     width: 100%;
+    
     /* border-radius: 10px;
     box-shadow: 2px 2px 2px #bebebe,
                 -2px -2px 2px #ffffff; */
+}
+.content .header h3{
+    font-weight: 200;
 }
 .tools .tool{
     display: flex;

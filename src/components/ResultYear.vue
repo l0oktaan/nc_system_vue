@@ -120,18 +120,23 @@ export default{
     justify-content:space-between;
     align-items: top;
     flex-direction: row;
-    
+    margin-top: 10px;
 }
 .audit .show{
     min-height: 50px;
     margin-bottom: 10px;
     margin-right: 10px;
-    padding: 10px;
+    
     flex:1;
     cursor: pointer;    
+    
+    /* background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
     border-radius: 10px;
-    box-shadow: 2px 2px 2px #bebebe,
-                -2px -2px 2px #ffffff;
+    border: 1px solid rgba( 255, 255, 255, 0.18 ); */
+    transition: 0.25s;
 }
 .audit .show .title{
     text-align: left;
@@ -139,6 +144,7 @@ export default{
 }
 .audit .show .title b{
     font-size: 0.8em;
+    font-weight: 200;
 }
 .audit .show .donut{
     display: flex;
@@ -160,7 +166,7 @@ export default{
     display: flex;
     justify-content:center;
     align-items: center;
-    background: #e0e0e0;
+    background: rgba(255,255,255,0.25);
     height: 50px;
     width: 50px;
     cursor: pointer;
@@ -168,8 +174,8 @@ export default{
     /* border: solid 0.5px #2c3e50; */
     transition: 0.4s;
     margin-left: 5px;
-    box-shadow: 2px 2px 5px #bebebe,
-                -2px -2px 5px #ffffff;
+    /* box-shadow: 2px 2px 5px #bebebe,
+                -2px -2px 5px #ffffff; */
 }
 
 .tools .tool.menu{
@@ -179,16 +185,20 @@ export default{
 
 }
 .tools:hover .tool.edit{
+    opacity: 1;
     top: 55px
 }
 .tools:hover .tool.nc{
+    opacity: 1;
     top: 107px
 }
 .tools:hover .tool.del{
+    opacity: 1;
     top: 160px
 }
 
 .tools .tool.edit{
+    opacity: 0;
     position: absolute;
     top:0;
     z-index:1004;
@@ -196,6 +206,7 @@ export default{
 
 }
 .tools .tool.nc{
+    opacity: 0;
     position: absolute;
     top:0;
     z-index:1004;
@@ -203,6 +214,7 @@ export default{
 
 }
 .tools .tool.del{
+    opacity: 0;
     position: absolute;
     top:0;
     /* border: solid 0.5px #830000; */
@@ -214,24 +226,24 @@ export default{
     background: #830000;
     color: #fff;
     
-    box-shadow: 2px 2px 2px #bebebe,
-                -2px -2px 2px #ffffff;
+    /* box-shadow: 2px 2px 2px #bebebe,
+                -2px -2px 2px #ffffff; */
     transform: translateX(1px);
     transform: translateY(1px);
 }
 .tools .tool.edit:hover{
     color: #fff;
     background: #2c3e50;
-    box-shadow: 2px 2px 2px #bebebe,
-                -2px -2px 2px #ffffff;
+    /* box-shadow: 2px 2px 2px #bebebe,
+                -2px -2px 2px #ffffff; */
     transform: translateX(1px);
     transform: translateY(1px);
 }
 .tools .tool.nc:hover{
     color: #fff;
     background: #2c3e50;
-    box-shadow: 2px 2px 2px #bebebe,
-                -2px -2px 2px #ffffff;
+    /* box-shadow: 2px 2px 2px #bebebe,
+                -2px -2px 2px #ffffff; */
     transform: translateX(1px);
     transform: translateY(1px);
 }
@@ -249,13 +261,12 @@ export default{
 }
 .audit .show:hover{
     
-    box-shadow: inset 2px 2px 2px #bebebe,
-                inset -2px -2px 2px #ffffff;
+    /* background: rgba( 255, 255, 255, 0.5 ); */
 }
 .audit .show.active{
-    background: #fff;
+    /* background: #fff;
     box-shadow: inset 2px 2px 2px #bebebe,
-                inset -2px -2px 2px #ffffff;
+                inset -2px -2px 2px #ffffff; */
 }
 .audit .show.active i:first-of-type{    
     transform: rotate(90deg);

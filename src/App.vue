@@ -27,19 +27,18 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: #fff;
 }
-  @font-face {
-    font-family: "Sarabun";
-    src: local("Sarabun"),
-    url(@/assets/fonts/Sarabun-Regular.ttf) format("truetype");
-  }
+  
 #app {
   font-family: Sarabun, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  background-color: #e0e0e0;
+  /* color: #2c3e50;
+  background: linear-gradient(225deg, #00d2ff 0%, #3a47d5 100%); */
+  /* background: linear-gradient(225deg, #FC466B 0%, #3F5EFB 100%); */
+  background: linear-gradient(225deg, #1CB5E0 0%, #1f3cdb 100%);
   display: flex;
   justify-content: center;
   align-items: top;
