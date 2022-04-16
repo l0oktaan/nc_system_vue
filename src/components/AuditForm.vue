@@ -187,6 +187,8 @@ export default {
     
     display: flex;
     background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur( 2px );
+    -webkit-backdrop-filter: blur( 2px );
     justify-content: flex-start;
     flex-direction: column;
     align-items: top;

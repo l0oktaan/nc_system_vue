@@ -43,7 +43,7 @@ export default {
                         offsetY: 0,
                         customScale: 1,
                         dataLabels: {
-                            offset: 30,
+                            offset: 35,
                             minAngleToShowLabel: 10,
                             
                         }, 
@@ -56,9 +56,9 @@ export default {
                                     show: true,
                                     fontSize: '20px',
                                     fontFamily: 'Sarabun',
-                                    fontWeight: 800,
+                                    fontWeight: 100,
                                     color: '#fff',
-                                    offsetY: 12,
+                                    offsetY: 15,
                                     
                                     formatter: function (val) {
                                         return val
@@ -68,7 +68,7 @@ export default {
                                 total: {
                                     show: true,
                                     fontSize: '18px',
-                                    fontWeight: 300,
+                                    fontWeight: 100,
                                     fontFamily: 'Sarabun',
                                     label: 'ทั้งหมด',
                                     color: '#fff',
@@ -176,8 +176,25 @@ export default {
     padding: 10px 20px;
     transition: 0.25s;
 }
+.pie::before{
+    content: '';
+    position:absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba( 255, 255, 255, 0.3 );
+    transition: transform 0.5s;
+    transform: scaleY(0);
+    transform-origin: bottom;
+}
+.pie:hover::before{
+    transition: transform 0.5s;
+    transform: scaleY(1);
+    transform-origin: bottom;
+}
 .pie:hover{
-    background: rgba( 255, 255, 255, 0.4 );
+    /* background: rgba( 255, 255, 255, 0.4 ); */
 }
 .pie .title{
     text-align: left;

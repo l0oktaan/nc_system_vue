@@ -1,5 +1,9 @@
 <template>
   <v-app>
+    <!-- <v-parallax
+      height="100%"
+      src="https://cdn.vuetifyjs.com/images/parallax/material2.jpg"
+    > -->
     <top-nav></top-nav>
     <div class="content">
       <!-- <div class="menu">
@@ -9,6 +13,7 @@
         <router-view/>        
       </div>
     </div>
+  <!-- </v-parallax> -->
   </v-app>
 </template>
 <script>
@@ -38,12 +43,12 @@ export default {
   /* color: #2c3e50;
   background: linear-gradient(225deg, #00d2ff 0%, #3a47d5 100%); */
   /* background: linear-gradient(225deg, #FC466B 0%, #3F5EFB 100%); */
-  background: linear-gradient(225deg, #1CB5E0 0%, #1f3cdb 100%);
+  background: linear-gradient(225deg, #1CB5E0 0%,#1CB5E0 55.2%,#1f3cdb 49.8%, #1f3cdb 100%);
   display: flex;
   justify-content: center;
   align-items: top;
   flex-direction: column;
-
+  
 }
 .content{
   display: flex;
