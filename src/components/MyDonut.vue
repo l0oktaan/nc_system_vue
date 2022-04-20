@@ -175,6 +175,7 @@ export default {
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     padding: 10px 20px;
     transition: 0.25s;
+    cursor: pointer;    
 }
 .pie::before{
     content: '';
