@@ -40,7 +40,9 @@ export default {
 .nc_detail{
     width: 100%;    
     display: flex;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur( 1px );
+    -webkit-backdrop-filter: blur( 1px );
     justify-content: flex-start;
     flex-direction: column;
     align-items: top;

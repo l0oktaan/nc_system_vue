@@ -24,12 +24,12 @@
             </div>                
             <h4>รายการ NC</h4>
         </router-link>  
-        <router-link to="about" class="list">
+        <!-- <router-link to="about" class="list">
             <div class="list-icon">
                 <i class="icon ion-md-paper"></i>
             </div>                
             <h4>About</h4>
-        </router-link>       
+        </router-link>        -->
               
     </div>
     <div class="nav2">      

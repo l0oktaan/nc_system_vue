@@ -1,11 +1,15 @@
 <template>
   <div class="list">        
-    <tr>
+    <!-- <tr>
       <td>1</td>
       <td class="name">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium recusandae ratione, suscipit exercitationem neque vel sapiente quia voluptatibus! Unde dolores architecto nemo omnis qui quas tempore culpa itaque asperiores neque?</td> 
       <td>tools</td>
-    </tr>
-
+    </tr> -->
+    <div class="item">
+      <div class="order">1</div>
+      <div class="name">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam repellat magni placeat vel esse enim natus aliquid, sapiente velit nam possimus atque officiis, distinctio aspernatur reprehenderit, soluta quibusdam corrupti. Doloremque?</div>
+    </div>
+    <div class="tools">Tools</div>
   </div>
 </template>
 <script>
@@ -19,13 +23,12 @@ export default{
 <style scoped>
 .list{
   
-  /* display: flex;
+  display: flex;
   flex-direction: row;
   background: #fff;
   color: #000;
   width: 100%;
-  flex-shrink: 1;
-  justify-content: space-between; */
+ 
   
 }
 .list .item{
@@ -38,6 +41,17 @@ export default{
   -webkit-box-orient: vertical;
   overflow: hidden;
   
+  
+  /* white-space: nowrap; */
+  /* overflow: hidden;
+  text-overflow: ellipsis; */
+}
+.list .item .name{
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: left;
   
   /* white-space: nowrap; */
   /* overflow: hidden;

@@ -1,4 +1,4 @@
-// import "@fortawesome/fontawesome-free/css/all.css";
+import "@fortawesome/fontawesome-free/css/all.css";
 import '@/assets/fontawesome/all.min.css';
 import '@/scss/variables.scss';
 import Vue from 'vue'
@@ -13,5 +13,5 @@ Vue.use(Vuetify,{
   });
 
 export default new Vuetify({
-    iconfont: "mdi" | "fa" | "fas" | "fa-solid"
+    iconfont: "mdi" | "fa" | "fas" | "fal" | "fa-solid"
 });

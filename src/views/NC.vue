@@ -22,7 +22,7 @@
                             v-bind="attrs"
                             v-on="on"                            
                         >
-                            <i class="fas fa-ellipsis-v"></i>
+                        <i class="fas fa-ellipsis-v"></i>
                         </div>
                     </template>
                     <span>อื่น ๆ</span>
@@ -116,10 +116,48 @@ export default {
                     ],
                     status: 0
                 },
+                {
+                    id:3,
+                    order:3,
+                    name:"จากการตรวจสอบการจัดทำสัญญารักษาความลับ (NDA) พบว่า การจัดทำสัญญารักษาความลับไม่ครบถ้วน ได้แก่ 1) เจ้าหน้าที่บริษัท โปรเฟสชั่นนัล คอมพิวเตอร์ จำกัด ตามสัญญาเลขที่ 70/2563 และสัญญาเลขที่ 33/2564 2) เจ้าหน้าที่บริษัท ซีดีจี ซิสเต็มท์ จำกัด ตามสัญญาเลขที่ 54/2564",
+                    level:"minor",
+                    correctives:[
+                        {
+                            id: 1,
+                            group_id: "SECD",
+                            status: 0
+                        },
+                        {
+                            id: 2,
+                            group_id: "SDG2",
+                            status: 1
+                        },
+                    ],
+                    status: 0
+                },
+                {
+                    id:4,
+                    order:4,
+                    name:"จากการตรวจสอบการจัดทำสัญญารักษาความลับ (NDA) พบว่า การจัดทำสัญญารักษาความลับไม่ครบถ้วน ได้แก่ 1) เจ้าหน้าที่บริษัท โปรเฟสชั่นนัล คอมพิวเตอร์ จำกัด ตามสัญญาเลขที่ 70/2563 และสัญญาเลขที่ 33/2564 2) เจ้าหน้าที่บริษัท ซีดีจี ซิสเต็มท์ จำกัด ตามสัญญาเลขที่ 54/2564",
+                    level:"minor",
+                    correctives:[
+                        {
+                            id: 1,
+                            group_id: "SECD",
+                            status: 0
+                        },
+                        {
+                            id: 2,
+                            group_id: "SDG2",
+                            status: 1
+                        },
+                    ],
+                    status: 0
+                },
             )
         },
         async showDetail(res){
-            console.log('emit');
+            
             this.nc_id = await res.id;
             this.nc_status = await res.status;
             this.dialog = await true;
