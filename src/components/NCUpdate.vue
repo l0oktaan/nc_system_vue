@@ -1,85 +1,83 @@
 <template>
-    <div class="nc_detail" v-if="nc">        
-        <v-row justify="start">
-            <v-col cols="2"></v-col>
-            <v-col>
-                <h3>ข้อมูลความไม่สอดคล้องที่ตรวจพบ</h3>
-            </v-col>
-            <v-col cols="2" style="text-align: right;">
-                <button class="close" @click="close"><i class="fas fa-times "></i></button>
-            </v-col>
-        </v-row>
-        <v-row justify="start" class="row-detail">
-            <v-col cols="5" class="col-name">ลำดับที่ :</v-col>
-            <v-col cols="4" class="col-value">{{nc.order}}</v-col>
-        </v-row> 
-        <v-row justify="start" class="row-detail">
-            <v-col cols="5" class="col-name">ระดับ :</v-col>
-            <v-col cols="4" class="col-value">
-                <div class="level">{{getLevel(nc.level)}}</div>
-            </v-col>
-        </v-row>  
-        <v-row justify="start" class="row-detail">
-            <v-col cols="5" class="col-name">หัวข้อความไม่สอดคล้อง :</v-col>
-            <v-col cols="6" class="col-value">
-                {{nc.name}}
-            </v-col>
-        </v-row>           
-        <v-row justify="start" class="row-detail">
-            <v-col cols="5" class="col-name">สาเหตุ :</v-col>
-            <v-col cols="6" class="col-value">
-                {{nc.cause}}
-            </v-col>
-        </v-row>
-        <v-row justify="start" class="row-detail">
-            <v-col cols="5" class="col-name">แนวทางแก้ไข :</v-col>
-            <v-col cols="6" class="col-value">
-                <div v-for="(item,index) in nc.corrective" :key="index">{{index+1 + '. ' + item}}</div>
-            </v-col>                
-        </v-row>
-        
-        <v-row justify="start" class="row-detail">
-            <v-col cols="5" class="col-name">หมายเลขข้อกำหนด :</v-col>
-            <v-col cols="6" class="col-value">
-                <div v-for="(item,index) in nc.annex" :key="index">{{item.no + ' ' + item.name}}</div>
-            </v-col>
+    <div class="nc_detail" v-if="nc">  
+        <div class="form">
+            <v-row justify="start">
+                <v-col cols="2"></v-col>
+                <v-col>
+                    <h3>ข้อมูลความไม่สอดคล้องที่ตรวจพบ</h3>
+                </v-col>
+                <v-col cols="2" style="text-align: right;">
+                    <button class="close" @click="close"><i class="fas fa-times "></i></button>
+                </v-col>
+            </v-row>
+            <v-row justify="start" class="row-detail">
+                <v-col cols="5" class="col-name">ลำดับที่ :</v-col>
+                <v-col cols="4" class="col-value">{{nc.order}}</v-col>
+            </v-row> 
+            <v-row justify="start" class="row-detail">
+                <v-col cols="5" class="col-name">ระดับ :</v-col>
+                <v-col cols="4" class="col-value">
+                    <div class="level">{{getLevel(nc.level)}}</div>
+                </v-col>
+            </v-row>  
+            <v-row justify="start" class="row-detail">
+                <v-col cols="5" class="col-name">หัวข้อความไม่สอดคล้อง :</v-col>
+                <v-col cols="6" class="col-value">
+                    {{nc.name}}
+                </v-col>
+            </v-row>           
+            <v-row justify="start" class="row-detail">
+                <v-col cols="5" class="col-name">สาเหตุ :</v-col>
+                <v-col cols="6" class="col-value">
+                    {{nc.cause}}
+                </v-col>
+            </v-row>
+            <v-row justify="start" class="row-detail">
+                <v-col cols="5" class="col-name">แนวทางแก้ไข :</v-col>
+                <v-col cols="6" class="col-value">
+                    <div v-for="(item,index) in nc.corrective" :key="index">{{index+1 + '. ' + item}}</div>
+                </v-col>                
+            </v-row>
             
-        </v-row>           
-        <v-row justify="center">
-            <v-col cols="8 corrective">
-                <v-tabs>
-                    <v-tab v-for="(item,index) in nc.correctives" :key="index">{{item.group_id}}</v-tab>
-                    <v-tab-item v-for="(item,index) in nc.correctives" :key="index">
-                        <v-row justify="start" class="row-detail">
-                            <v-col cols="5" class="col-name">รายละเอียดการแก้ไข :</v-col>
-                            <v-col cols="6" class="col-value">{{item.detail}}</v-col>
-                        </v-row>
-                        <v-row justify="start" class="row-detail">
-                            <v-col cols="5" class="col-name">เอกสารหลักฐานประกอบการแก้ไข :</v-col>
-                            <v-col cols="6" class="col-value">
-                                <div v-for="(ev,index1) in item.evidenses" :key="index1">
-                                    {{ev.evidense}}
-                                </div>
-                            </v-col>
-                        </v-row>
-                        <v-row justify="start" class="row-detail">
-                            <v-col cols="5" class="col-name">ผู้รับผิดชอบ :</v-col>
-                            <v-col cols="6" class="col-value">{{item.response_by}}</v-col>
-                        </v-row>
-                        <v-row justify="start" class="row-detail">
-                            <v-col cols="5" class="col-name">เมื่อวันที่ :</v-col>
-                            <v-col cols="6" class="col-value">{{item.closed_date}}</v-col>
-                        </v-row>
-                            <v-col cols="12" class="text-center"> 
-                                <v-btn class="warning">ส่งกลับ</v-btn>
-                                <v-btn class="primary">บันทึก</v-btn>
-                            </v-col>
-                    </v-tab-item>
-                </v-tabs>  
-            </v-col>
-        </v-row>
-        
-                     
+            <v-row justify="start" class="row-detail">
+                <v-col cols="5" class="col-name">หมายเลขข้อกำหนด :</v-col>
+                <v-col cols="6" class="col-value">
+                    <div v-for="(item,index) in nc.annex" :key="index">{{item.no + ' ' + item.name}}</div>
+                </v-col>
+                
+            </v-row>           
+        </div>
+        <div class="corrective">
+            <v-tabs>
+                <v-tab v-for="(item,index) in nc.correctives" :key="index">{{item.group_id}}</v-tab>
+                <v-tab-item v-for="(item,index) in nc.correctives" :key="index">
+                    <v-row justify="start" class="row-detail">
+                        <v-col cols="5" class="col-name">รายละเอียดการแก้ไข :</v-col>
+                        <v-col cols="6" class="col-value">{{item.detail}}</v-col>
+                    </v-row>
+                    <v-row justify="start" class="row-detail">
+                        <v-col cols="5" class="col-name">เอกสารหลักฐานประกอบการแก้ไข :</v-col>
+                        <v-col cols="6" class="col-value">
+                            <div v-for="(ev,index1) in item.evidenses" :key="index1">
+                                {{ev.evidense}}
+                            </div>
+                        </v-col>
+                    </v-row>
+                    <v-row justify="start" class="row-detail">
+                        <v-col cols="5" class="col-name">ผู้รับผิดชอบ :</v-col>
+                        <v-col cols="6" class="col-value">{{item.response_by}}</v-col>
+                    </v-row>
+                    <v-row justify="start" class="row-detail">
+                        <v-col cols="5" class="col-name">เมื่อวันที่ :</v-col>
+                        <v-col cols="6" class="col-value">{{item.closed_date}}</v-col>
+                    </v-row>
+                        <v-col cols="12" class="text-center"> 
+                            <v-btn class="warning">ส่งกลับ</v-btn>
+                            <v-btn class="primary">บันทึก</v-btn>
+                        </v-col>
+                </v-tab-item>
+            </v-tabs>  
+        </div>
         
     </div>
 </template>
@@ -136,15 +134,21 @@ export default {
 <style scoped>
 .nc_detail{
     width: 100%;    
-    
     display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+.nc_detail{
+   
     background-color: rgba(255, 255, 255, 1);
     backdrop-filter: blur( 1px );
     -webkit-backdrop-filter: blur( 1px );
-    justify-content: flex-start;
-    flex-direction: column;
-    align-items: top;
-    padding: 10px;
+    
+}
+.form{
+    width: 100%;
 }
 .nc_detail h3{
     margin-top: 10px;
@@ -183,9 +187,11 @@ export default {
 }
 .corrective{
     border: 1px solid #ddd;
-    border-radius: 10px;
+    
     padding: 5px;    
     margin-bottom: 1em;
+    width: 70%;
+    margin-top: 2em;
 }
 .corrective button{
     margin-top: 1em;
