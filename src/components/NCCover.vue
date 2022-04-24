@@ -5,8 +5,8 @@
             <div class="name"><span>{{nc.name}}</span></div>
         </div>
         <div class="tools">
-            <div :class="'level ' + nc.level">
-                <span>{{nc.level}}</span>
+            <div :class="'level ' + getLevel(nc.level)">
+                <span>{{getLevel(nc.level)}}</span>
             </div>
             <div class="group">
                 <div v-for="item in nc.correctives" :key="item.id">
@@ -16,22 +16,51 @@
             <div class="status">{{nc.status}}</div>
             <div class="tool">                
                 <i class="fas fa-ellipsis-v"></i>
-                
-                    <div 
-                        class="mytool edit"                        
-                        dark                      
-                        @click="showDetail"
-                    >
-                        <i class="fas fa-pen fa-2x" ></i>
-                    </div>
+                    <v-tooltip bottom>
+                        <template v-slot:activator="{ on, attrs }">                       
+                            
+                            <div 
+                                class="mytool update"                        
+                                dark                 
+                                @click="ncUpdate"   
+                                v-bind="attrs"
+                                v-on="on"    
+                            >
+                                <i class="fas fa-tasks fa-2x"></i>
+                            </div>
+                        </template>
+                        <span>บันทึกข้อมูล</span>
+                    </v-tooltip>
+                    <v-tooltip bottom>
+                        <template v-slot:activator="{ on, attrs }">                     
+                            <div 
+                                class="mytool edit"                        
+                                dark                      
+                                @click="ncEdit"
+                                v-bind="attrs"
+                                v-on="on"
+                            >
+                                <i class="fas fa-pen fa-2x" ></i>
+                            </div>
+                        </template>
+                        <span>แก้ไขรายการ</span>
+                    </v-tooltip>
+                    <v-tooltip bottom>
+                        <template v-slot:activator="{ on, attrs }">                     
+                            
+                            <div 
+                                class="mytool del"                                
+                                dark   
+                                v-bind="attrs"
+                                v-on="on"                     
+                            >
+                                <i class="fas fa-trash fa-2x"></i>
+                            </div>
+                        </template>
+                        <span>ลบรายการ</span>
+                    </v-tooltip>
                                             
-                    <div 
-                        class="mytool del"
-                        
-                        dark                        
-                    >
-                        <i class="fas fa-trash fa-2x"></i>
-                    </div>
+                    
                         
             </div>
         </div>
@@ -41,16 +70,33 @@
 export default{
     props: ['nc'],
     data: ()=> ({
+        levels: [],
         dialog: false,
     }),
+    mounted(){
+        this.levels = this.$store.getters.nc_levels
+    },
     methods:{
-        showDetail(){
-            console.log("Show");
-            this.$emit("showDetail",{
+        ncEdit(){            
+            this.$emit("ncEdit",{
                 id: this.nc.id,
                 status: 'edit'
             });
-        }
+        },
+        ncUpdate(){
+            this.$emit("ncUpdate",{
+                id: this.nc.id,
+                status: 'update'
+            });
+        },
+        getLevel(level){
+            try {
+                return this.levels.filter(x=>x.value==level)[0].text
+            } catch (error) {
+                return
+            }
+            
+        },
     }
 }
 </script>
@@ -113,13 +159,16 @@ export default{
     border-radius: 5px;
     padding: 3px 5px 3px 5px;
     margin-right: 5px;
+    font-weight: 600;
 }
-.list .tools .level.major span{
-    background: rgb(211, 5, 5);
+.list .tools .level.Major span{
+    /* background: rgb(211, 5, 5); */
+    color: rgb(211, 5, 5);
     
 }
-.list .tools .level.minor span{
-    background: rgb(236, 108, 3);
+.list .tools .level.Minor span{
+    /* background: rgb(236, 108, 3); */
+    color : rgb(236, 108, 3);
     
 }
 .list .tools .group {
@@ -151,7 +200,7 @@ export default{
     font-weight:lighter;
     background: rgba(99, 99, 99, 1);
     border-left: 0.25px solid rgba( 255, 255, 255, 0.4 );
-
+    overflow: hidden;
     
 }
 .tool::before{
@@ -184,21 +233,29 @@ export default{
     transition: 0.2s;
     height: 100%;
     color: rgb(136, 136, 136);
-    font-size: 0em;
+    font-size: 0.2em;
     z-index: 1001;
+    
 }
-.tool:hover .mytool.edit{
+.tool:hover .mytool.update{
     position:absolute;
     top: 0;
     right: 30px;
     font-size: 1em;
 }
+.tool:hover .mytool.edit{
+    position:absolute;
+    top: 0;
+    right: 75px;
+    font-size: 1em;
+}
 .tool:hover .mytool.del{
     position:absolute;
     top: 0;
-    right: 80px;
+    right: 120px;
     font-size: 1em;
 }
+
 .tool .mytool:hover{
     color: #000;
 }

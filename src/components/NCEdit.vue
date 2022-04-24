@@ -162,11 +162,11 @@ export default {
     }),
     methods:{
         submit(){
-            this.$emit("hideDetail");
+            this.$emit("hideEdit");
         },
         close(){
             console.log("close");
-            this.$emit("hideDetail");
+            this.$emit("hideEdit");
         }
     }
 }

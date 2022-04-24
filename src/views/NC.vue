@@ -32,8 +32,8 @@
         <div class="nc_list">
             <nc-cover v-for="(item,index) in nc_list" :key="index" 
                 :nc="item"
-                @showDetail="showDetail"
-                
+                @ncEdit="ncEdit"
+                @ncUpdate="ncUpdate"
             >
             </nc-cover>
         </div>
@@ -44,23 +44,56 @@
             transition="dialog-bottom-transition"
             scrollable
         >
-            <nc-detail
+            <!-- <nc-detail
                :id="nc_id"
                :status="nc_status"
                @hideDetail="hideDetail"
             >
-            </nc-detail>
+            </nc-detail> -->
+            <nc-edit
+               :id="nc_id"
+               :status="nc_status"
+               @hideEdit="hideEdit"
+               
+            >
+            </nc-edit>
+        </v-dialog>
+        <v-dialog
+            v-model="dialogUpdate"
+            fullscreen
+            hide-overlay
+            transition="dialog-bottom-transition"
+            scrollable
+        >
+            <!-- <nc-detail
+               :id="nc_id"
+               :status="nc_status"
+               @hideDetail="hideDetail"
+            >
+            </nc-detail> -->
+            <nc-update
+               :id="nc_id"
+               :status="nc_status"
+               @hideUpdate="hideUpdate"
+               
+            >
+            </nc-update>
         </v-dialog>
     </div>
 </template>
 
 <script>
-import NCDetail from '@/components/NCDetail.vue'
+// import NCDetail from '@/components/NCDetail.vue'
+import axios from 'axios'
+import NCEdit from '@/components/NCEdit.vue'
+import NCUpdate from '@/components/NCUpdate.vue'
 import NCCover from '@/components/NCCover.vue'
 export default {
     components:{
         'nc-cover' : NCCover,
-        'nc-detail' : NCDetail
+        // 'nc-detail' : NCDetail,
+        'nc-edit' : NCEdit,
+        'nc-update' : NCUpdate,
     },
     data: ()=>({
         years: [
@@ -68,105 +101,45 @@ export default {
             '2563'
         ],
         dialog: false,
+        dialogUpdate: false,
         nc_id: 0,
         nc_status: 'new',
-        nc_list:[]
+        nc_list:[],        
     }),
     mounted(){
         this.fetchData();
     },
     methods: {
-        fetchData(){
-            this.nc_list.push(
-                {
-                    id:1,
-                    order:1,
-                    name:"จากการตรวจสอบการทดสอบช่องโหว่ พบว่ายังไม่ได้ดำเนินการปิดช่องโหว่ และไม่ได้กำหนดนโยบายการปฏิบัติงานเพื่อปิดช่องโหว่ ซึ่งมีความเสี่ยงที่อยู่ในระดับต่าง ๆ",
-                    level:"major",
-                    correctives:[
-                        {
-                            id: 1,
-                            group_id: "SECD",
-                            status: 0
-                        },
-                        {
-                            id: 2,
-                            group_id: "SDG2",
-                            status: 1
-                        },
-                    ],
-                    status: 0
-                },
-                {
-                    id:2,
-                    order:2,
-                    name:"จากการตรวจสอบการจัดทำสัญญารักษาความลับ (NDA) พบว่า การจัดทำสัญญารักษาความลับไม่ครบถ้วน ได้แก่ 1) เจ้าหน้าที่บริษัท โปรเฟสชั่นนัล คอมพิวเตอร์ จำกัด ตามสัญญาเลขที่ 70/2563 และสัญญาเลขที่ 33/2564 2) เจ้าหน้าที่บริษัท ซีดีจี ซิสเต็มท์ จำกัด ตามสัญญาเลขที่ 54/2564",
-                    level:"minor",
-                    correctives:[
-                        {
-                            id: 1,
-                            group_id: "SECD",
-                            status: 0
-                        },
-                        {
-                            id: 2,
-                            group_id: "SDG2",
-                            status: 1
-                        },
-                    ],
-                    status: 0
-                },
-                {
-                    id:3,
-                    order:3,
-                    name:"จากการตรวจสอบการจัดทำสัญญารักษาความลับ (NDA) พบว่า การจัดทำสัญญารักษาความลับไม่ครบถ้วน ได้แก่ 1) เจ้าหน้าที่บริษัท โปรเฟสชั่นนัล คอมพิวเตอร์ จำกัด ตามสัญญาเลขที่ 70/2563 และสัญญาเลขที่ 33/2564 2) เจ้าหน้าที่บริษัท ซีดีจี ซิสเต็มท์ จำกัด ตามสัญญาเลขที่ 54/2564",
-                    level:"minor",
-                    correctives:[
-                        {
-                            id: 1,
-                            group_id: "SECD",
-                            status: 0
-                        },
-                        {
-                            id: 2,
-                            group_id: "SDG2",
-                            status: 1
-                        },
-                    ],
-                    status: 0
-                },
-                {
-                    id:4,
-                    order:4,
-                    name:"จากการตรวจสอบการจัดทำสัญญารักษาความลับ (NDA) พบว่า การจัดทำสัญญารักษาความลับไม่ครบถ้วน ได้แก่ 1) เจ้าหน้าที่บริษัท โปรเฟสชั่นนัล คอมพิวเตอร์ จำกัด ตามสัญญาเลขที่ 70/2563 และสัญญาเลขที่ 33/2564 2) เจ้าหน้าที่บริษัท ซีดีจี ซิสเต็มท์ จำกัด ตามสัญญาเลขที่ 54/2564",
-                    level:"minor",
-                    correctives:[
-                        {
-                            id: 1,
-                            group_id: "SECD",
-                            status: 0
-                        },
-                        {
-                            id: 2,
-                            group_id: "SDG2",
-                            status: 1
-                        },
-                    ],
-                    status: 0
-                },
-            )
-        },
-        async showDetail(res){
+        async fetchData(){
+            try {
+                let path = await `/api/non_conformances`
+                let res = await axios.get(`${path}`)
+                this.nc_list = res.data
+            } catch (error) {
+                console.log('error :' + error)
+            }
             
+
+        },
+        async ncEdit(res){            
             this.nc_id = await res.id;
             this.nc_status = await res.status;
             this.dialog = await true;
         },
-        async hideDetail(){
-            console.log("closed");
+        async ncUpdate(res){            
+            this.nc_id = await res.id;
+            this.nc_status = await res.status;
+            this.dialogUpdate = await true;
+        },
+        async hideEdit(){            
             this.nc_id = await 0;
             this.nc_status = await 'new';
             this.dialog = await false;
+        },
+        async hideUpdate(){            
+            this.nc_id = await 0;
+            this.nc_status = await 'new';
+            this.dialogUpdate = await false;
         }
     },
 }
@@ -193,6 +166,9 @@ export default {
     /* border-radius: 10px;
     box-shadow: 2px 2px 2px #bebebe,
                 -2px -2px 2px #ffffff; */
+}
+.content .header h3{
+    font-weight: 300;
 }
 .tools{
     display: flex;
