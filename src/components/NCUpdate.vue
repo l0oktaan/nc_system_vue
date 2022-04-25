@@ -92,7 +92,9 @@
                         </v-row> -->
                         <v-row justify="start" class="row-detail"> 
                             <v-col cols="5" class="col-name">สถานะ :</v-col>
-                            <v-col cols="6" class="col-value">{{nc.status}}</v-col>
+                            <v-col cols="6" class="col-value">
+
+                            </v-col>
                         </v-row>
                         <v-row justify="start" class="row-detail"> 
                             <v-col cols="5" class="col-name">เมื่อวันที่ :</v-col>
@@ -105,12 +107,7 @@
                         <v-row justify="start" class="row-detail"> 
                             <v-col cols="5" class="col-name">รายละเอียด :</v-col>
                             <v-col cols="6" class="col-value">{{nc.accept_detail}}</v-col>
-                        </v-row>
-                        <v-row>
-                            <v-col cols="12" class="text-center"> 
-                                <v-btn class="primary">บันทึก</v-btn>
-                            </v-col>
-                        </v-row>
+                        </v-row>                        
                     </div>
                     <div class="approve" v-else>
                         <!-- <v-row >
