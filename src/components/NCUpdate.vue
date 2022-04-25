@@ -45,12 +45,19 @@
                     <div v-for="(item,index) in nc.annex" :key="index">{{item.no + ' ' + item.name}}</div>
                 </v-col>
                 
-            </v-row>           
+            </v-row>  
+            <v-row justify="start" class="row-detail">
+                <v-col cols="5" class="col-name">ดำเนินการให้แล้วเสร็จในวันที่ :</v-col>
+                <v-col cols="6" class="col-value">
+                    {{nc.due_date}}
+                </v-col>
+            </v-row>         
         </div>
         <div class="corrective">
             <v-tabs>
                 <v-tab v-for="(item,index) in nc.correctives" :key="index">{{item.group_id}}</v-tab>
-                <v-tab-item v-for="(item,index) in nc.correctives" :key="index">
+                <v-tab>บันทึกการติดตามผล ฯ</v-tab>
+                <v-tab-item v-for="(item,index) in nc.correctives" :key="index" class="my-tab-item">
                     <v-row justify="start" class="row-detail">
                         <v-col cols="5" class="col-name">รายละเอียดการแก้ไข :</v-col>
                         <v-col cols="6" class="col-value">{{item.detail}}</v-col>
@@ -71,14 +78,77 @@
                         <v-col cols="5" class="col-name">เมื่อวันที่ :</v-col>
                         <v-col cols="6" class="col-value">{{item.closed_date}}</v-col>
                     </v-row>
+                    <v-row>
                         <v-col cols="12" class="text-center"> 
                             <v-btn class="warning">ส่งกลับ</v-btn>
                             <v-btn class="primary">บันทึก</v-btn>
                         </v-col>
+                    </v-row>
                 </v-tab-item>
-            </v-tabs>  
+                <v-tab-item>
+                    <div class="approve" v-if="nc.status == 1">
+                        <!-- <v-row >
+                            <v-col cols="12">บันทึกติดตามผลการปฏิบัติการเพื่อดำเนินการแก้ไข</v-col>
+                        </v-row> -->
+                        <v-row justify="start" class="row-detail"> 
+                            <v-col cols="5" class="col-name">สถานะ :</v-col>
+                            <v-col cols="6" class="col-value">{{nc.status}}</v-col>
+                        </v-row>
+                        <v-row justify="start" class="row-detail"> 
+                            <v-col cols="5" class="col-name">เมื่อวันที่ :</v-col>
+                            <v-col cols="6" class="col-value">{{nc.complete_date}}</v-col>
+                        </v-row>
+                        <v-row justify="start" class="row-detail"> 
+                            <v-col cols="5" class="col-name">เหตุผลอื่น ๆ :</v-col>
+                            <v-col cols="6" class="col-value">{{nc.reason}}</v-col>
+                        </v-row>
+                        <v-row justify="start" class="row-detail"> 
+                            <v-col cols="5" class="col-name">รายละเอียด :</v-col>
+                            <v-col cols="6" class="col-value">{{nc.accept_detail}}</v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col cols="12" class="text-center"> 
+                                <v-btn class="primary">บันทึก</v-btn>
+                            </v-col>
+                        </v-row>
+                    </div>
+                    <div class="approve" v-else>
+                        <!-- <v-row >
+                            <v-col cols="12">บันทึกติดตามผลการปฏิบัติการเพื่อดำเนินการแก้ไข</v-col>
+                        </v-row> -->
+                        <v-row justify="start" class="row-detail"> 
+                            <v-col cols="5" class="col-name">สถานะ :</v-col>
+                            <v-col cols="6" class="col-value">{{nc.status}}</v-col>
+                        </v-row>
+                        <v-row justify="start" class="row-detail"> 
+                            <v-col cols="5" class="col-name">เมื่อวันที่ :</v-col>
+                            <v-col cols="6" class="col-value">{{nc.complete_date}}</v-col>
+                        </v-row>
+                        <v-row justify="start" class="row-detail"> 
+                            <v-col cols="5" class="col-name">เหตุผลอื่น ๆ :</v-col>
+                            <v-col cols="6" class="col-value">{{nc.reason}}</v-col>
+                        </v-row>
+                        <v-row justify="start" class="row-detail"> 
+                            <v-col cols="5" class="col-name">รายละเอียด :</v-col>
+                            <v-col cols="6" class="col-value">{{nc.accept_detail}}</v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col cols="12" class="text-center"> 
+                                <v-btn class="primary">บันทึก</v-btn>
+                            </v-col>
+                        </v-row>
+                    </div>
+                    
+                </v-tab-item>
+            </v-tabs> 
+
         </div>
-        
+        <div class="approve">
+            <v-row justify="start" class="row-detail">
+                <!-- <v-col cols="5" class="col-name">รายละเอียดการแก้ไข :</v-col>
+                <v-col cols="6" class="col-value">{{item.detail}}</v-col> -->
+            </v-row>
+        </div>
     </div>
 </template>
 
@@ -192,9 +262,21 @@ export default {
     margin-bottom: 1em;
     width: 70%;
     margin-top: 2em;
-}
-.corrective button{
-    margin-top: 1em;
-}
 
+}
+.my-tab-item{
+    margin-top: 10px;
+}
+.v-tab{
+    color: rgb(94, 94, 94)!important;
+}
+.v-tab.v-tab--active{
+    font-weight: 600;
+    color: rgb(0, 46, 131)!important;
+    
+}
+.approve{
+    width: 100%;
+    margin-top: 10px;
+}
 </style>
