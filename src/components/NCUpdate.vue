@@ -119,15 +119,77 @@
                         </v-row>
                         <v-row justify="start" class="row-detail"> 
                             <v-col cols="5" class="col-name">เมื่อวันที่ :</v-col>
-                            <v-col cols="6" class="col-value">{{nc.complete_date}}</v-col>
+                            <v-col cols="6" class="col-value">
+                                <v-dialog
+                                        ref="dialog"
+                                        v-model="date_menu"
+                                        :return-value.sync="nc.complete_date"
+                                        persistent
+                                        width="290px"
+                                    >
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-text-field
+                                            outlined
+                                            dense
+                                            v-model="nc.complete_date"                                            
+                                            
+                                            readonly
+                                            hide-details="auto"
+                                            v-bind="attrs"
+                                            v-on="on"
+
+                                        >
+                                            <template v-slot:prepend>
+                                                <i class="fas fa-calendar"></i>
+                                            </template>
+                                        </v-text-field>
+                                    </template>
+                                    <v-date-picker
+                                        v-model="nc.complete_date"
+                                        locale="th"
+                                    >
+                                        <v-spacer></v-spacer>
+                                        <v-btn
+                                            text
+                                            color="primary"
+                                            @click="date_menu = false"
+                                        >
+                                            ยกเลิก
+                                        </v-btn>
+                                        <v-btn
+                                            text
+                                            color="primary"
+                                            @click="$refs.dialog.save(nc.complete_date)"
+                                        >
+                                            ตกลง
+                                        </v-btn>
+                                    </v-date-picker>
+                                </v-dialog>
+                            </v-col>
                         </v-row>
                         <v-row justify="start" class="row-detail"> 
                             <v-col cols="5" class="col-name">เหตุผลอื่น ๆ :</v-col>
-                            <v-col cols="6" class="col-value">{{nc.reason}}</v-col>
+                            <v-col cols="6" class="col-value">
+                                <v-textarea
+                                    outlined
+                                     v-model="nc.reason"
+                                    no-resize
+                                    rows="3"
+                                    hide-details="auto"
+                                ></v-textarea>
+                            </v-col>
                         </v-row>
                         <v-row justify="start" class="row-detail"> 
                             <v-col cols="5" class="col-name">รายละเอียด :</v-col>
-                            <v-col cols="6" class="col-value">{{nc.accept_detail}}</v-col>
+                            <v-col cols="6" class="col-value">
+                                <v-textarea
+                                    outlined                                   
+                                    v-model="nc.accept_detail"
+                                    no-resize
+                                    rows="3"
+                                    hide-details="auto"
+                                ></v-textarea>
+                            </v-col>
                         </v-row>
                         <v-row>
                             <v-col cols="12" class="text-center"> 
@@ -155,7 +217,8 @@ export default {
     props: ['id','status'],
     data: ()=>({
         levels: [],
-        nc: null
+        nc: null,
+        date_menu: false
     }),
     watch: {
         id(newData){

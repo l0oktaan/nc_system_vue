@@ -58,8 +58,7 @@
                             </div>
                         </template>
                         <span>ลบรายการ</span>
-                    </v-tooltip>
-                                            
+                    </v-tooltip>                                           
                     
                         
             </div>
