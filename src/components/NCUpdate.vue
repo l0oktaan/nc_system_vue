@@ -53,7 +53,58 @@
                 </v-col>
             </v-row>         
         </div>
-        <div class="corrective">
+        <div class="form evedense" v-if="isUser">
+            <v-row justify="start" class="row-detail">
+                <v-col cols="5" class="col-name">รายละเอียดการแก้ไข :</v-col>
+                <v-col cols="6" class="col-value">
+                    <v-textarea
+                        outlined                        
+                        no-resize
+                        rows="3"
+                        hide-details="auto"
+                    ></v-textarea>
+                </v-col>
+            </v-row>
+            <v-row justify="start" class="row-detail">
+                <v-col cols="5" class="col-name">เอกสารหลักฐานประกอบการแก้ไข :</v-col>
+                <v-col cols="6" class="col-value">
+                    <v-file-input                        
+                        outlined
+                        dense
+                        hide-details
+                    ></v-file-input>
+                    
+                </v-col>
+                <v-col cols="1">
+                    <v-btn depressed
+                        color="primary">
+                        <i class="fas fa-plus"></i>
+                    </v-btn>
+                </v-col>
+            </v-row>
+            <v-row justify="start" class="row-detail">
+                <v-col cols="5" class="col-name"></v-col>
+                <v-col cols="6" class="col-value">
+                    <div class="list">
+                        File 1
+                    </div>
+                </v-col>
+                <v-col cols="1" class="text-left">
+                    <v-btn depressed
+                        color="primary">
+                        <i class="fas fa-minus"></i>
+                    </v-btn>
+                </v-col>
+            </v-row>
+            <v-row justify="start" class="row-detail">
+                <v-col cols="5" class="col-name"></v-col>
+                <v-col cols="6" class="col-value">
+                    <v-btn class="primary">บันทึก</v-btn>
+                </v-col>
+                
+            </v-row>
+        </div>
+        <div class="corrective" v-if="!isUser">
             <v-tabs>
                 <v-tab v-for="(item,index) in nc.correctives" :key="index">{{item.group_id}}</v-tab>
                 <v-tab>บันทึกการติดตามผล ฯ</v-tab>
@@ -93,7 +144,7 @@
                         <v-row justify="start" class="row-detail"> 
                             <v-col cols="5" class="col-name">สถานะ :</v-col>
                             <v-col cols="6" class="col-value">
-
+                                {{nc.status}}
                             </v-col>
                         </v-row>
                         <v-row justify="start" class="row-detail"> 
@@ -115,7 +166,13 @@
                         </v-row> -->
                         <v-row justify="start" class="row-detail"> 
                             <v-col cols="5" class="col-name">สถานะ :</v-col>
-                            <v-col cols="6" class="col-value">{{nc.status}}</v-col>
+                            <v-col cols="6" class="col-value">
+                                <v-checkbox
+                                    hide-details="auto"
+                                    v-model="ncStatus"
+                                    :label="`ดำเนินการเสร็จสิ้น`"
+                                ></v-checkbox>
+                            </v-col>
                         </v-row>
                         <v-row justify="start" class="row-detail"> 
                             <v-col cols="5" class="col-name">เมื่อวันที่ :</v-col>
@@ -202,12 +259,7 @@
             </v-tabs> 
 
         </div>
-        <div class="approve">
-            <v-row justify="start" class="row-detail">
-                <!-- <v-col cols="5" class="col-name">รายละเอียดการแก้ไข :</v-col>
-                <v-col cols="6" class="col-value">{{item.detail}}</v-col> -->
-            </v-row>
-        </div>
+        
     </div>
 </template>
 
@@ -218,7 +270,8 @@ export default {
     data: ()=>({
         levels: [],
         nc: null,
-        date_menu: false
+        date_menu: false,
+        nc_status: 0
     }),
     watch: {
         id(newData){
@@ -233,6 +286,19 @@ export default {
     mounted(){
         this.fetchData();
     },
+    computed:{
+        ncStatus:{
+            get:function(){
+                return this.nc_status==1 ? true : false
+            },
+            set:function(value){
+                this.nc_status = value ? 1 : 0 
+            }
+        },
+        isUser() {
+            return true;
+        }
+    },
     methods:{
         async fetchData(){
             
@@ -241,6 +307,7 @@ export default {
                 let path = await `http://localhost:5000/api/non_conformances/${this.id}`
                 let res = await axios.get(`${path}`)
                 this.nc = await res.data
+                this.nc_status = this.nc.status
                     
             } catch (error) {
                 console.log(error)   
@@ -301,7 +368,7 @@ export default {
 .row-detail {
     margin-left: 10px;
     margin-right: 10px;
-    border-bottom: 1px solid #ddd;
+    /* border-bottom: 1px solid #ddd; */
 }
 .row-detail.select {
     border-bottom: 0;
@@ -316,8 +383,7 @@ export default {
     text-align: left;
 }
 .corrective{
-    border: 1px solid #ddd;
-    
+    border: 1px solid #ddd;    
     padding: 5px;    
     margin-bottom: 1em;
     width: 70%;
@@ -338,5 +404,14 @@ export default {
 .approve{
     width: 100%;
     margin-top: 10px;
+}
+.v-input--selection-controls{
+    margin-top: 0px;
+    padding-top: 0px;
+}
+.evedense .list{
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
 }
 </style>

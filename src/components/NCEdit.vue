@@ -21,6 +21,7 @@
                         :items="levels"                        
                         outlined
                         dense
+                        hide-details="auto"
                     ></v-select>
                 </v-col>
             </v-row>  
@@ -32,6 +33,7 @@
                         outlined
                         rows="3"
                         row-height="30"
+                        hide-details="auto"
                     ></v-textarea>
                 </v-col>
             </v-row>           
@@ -43,6 +45,7 @@
                         outlined
                         rows="3"
                         row-height="15"
+                        hide-details="auto"
                     ></v-textarea>
                 </v-col>
             </v-row>
@@ -54,6 +57,7 @@
                         outlined
                         dense
                         hide-details
+                        
                     ></v-text-field>
                 </v-col>
                 <v-col cols="1" class="text-left">
@@ -200,13 +204,13 @@ export default {
     transform: rotate(90deg);
 }
 .frm > .row-detail:nth-of-type(2) {
-    border-top: 1px solid #ddd;
+    /* border-top: 1px solid #ddd; */
 }
 
 .row-detail {
     margin-left: 10px;
     margin-right: 10px;
-    border-bottom: 1px solid #ddd;
+    /* border-bottom: 1px solid #ddd; */
 }
 .row-detail.select {
     border-bottom: 0;

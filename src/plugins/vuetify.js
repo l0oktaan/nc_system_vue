@@ -5,7 +5,7 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 import { Ripple } from 'vuetify/lib/directives'
 import 'vuetify/dist/vuetify.min.css'
-
+import '@mdi/font/css/materialdesignicons.css'
 Vue.use(Vuetify,{
     directives: {
       Ripple
@@ -13,5 +13,5 @@ Vue.use(Vuetify,{
   });
 
 export default new Vuetify({
-    iconfont: "mdi" | "fa" | "fas" | "fal" | "fa-solid"
+    iconfont: "mdi" | "fa" | "fas"
 });
